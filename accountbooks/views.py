@@ -38,3 +38,13 @@ class AccountbookDetailView(APIView):
                 return Response(serializer.data, status=status.HTTP_200_OK)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response({"message": "접근 권한 없음"}, status=status.HTTP_403_FORBIDDEN)
+
+    # 가계부 삭제
+    def delete(self, request, accountbook_id):
+        accountbook = get_object_or_404(Accountbook, id=accountbook_id)
+        if request.user == accountbook.author:
+            accountbook.delete()
+            return Response({"message": "삭제 완료"}, status=status.HTTP_200_OK)
+        else:
+            return Response({"message": "접근 권한 없음"}, status=status.HTTP_403_FORBIDDEN)
+
