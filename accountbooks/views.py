@@ -4,10 +4,16 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from accountbooks.models import Accountbook
-from accountbooks.serializers import AccountbookCreateSerializer, AccountbookDetailSerializer
+from accountbooks.serializers import AccountbookSerializer, AccountbookCreateSerializer, AccountbookDetailSerializer
 
 class AccountbookView(APIView):
     permission_classes = [IsAuthenticated]
+
+    # 가계부 리스트 조회
+    def get(self, request):
+        accountbook = Accountbook.objects.filter(author = request.user)
+        serializer = AccountbookSerializer(accountbook, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     # 가계부 작성
     def post(self, request):
