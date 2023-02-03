@@ -1,3 +1,4 @@
 from django.contrib import admin
+from accountbooks.models import Accountbook
 
-# Register your models here.
+admin.site.register(Accountbook)
