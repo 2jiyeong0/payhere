@@ -14,4 +14,4 @@ class Accountbook(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"[날짜]{self.created_at}, [금액]{self.content}"
+        return f"[날짜]{self.created_at}, [금액]{self.amount}"
