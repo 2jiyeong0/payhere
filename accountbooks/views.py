@@ -2,11 +2,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
-from accountbooks.serializers import AccountbookCreateSerializer
+from django.shortcuts import get_object_or_404
+from accountbooks.models import Accountbook
+from accountbooks.serializers import AccountbookCreateSerializer, AccountbookDetailSerializer
 
 class AccountbookView(APIView):
     permission_classes = [IsAuthenticated]
 
+    # 가계부 작성
     def post(self, request):
         serializer = AccountbookCreateSerializer(data=request.data)
         if serializer.is_valid():
@@ -14,3 +17,13 @@ class AccountbookView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class AccountbookDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    # 가계부 상세 조회
+    def get(self, request, accountbook_id):
+        accountbook = get_object_or_404(Accountbook, id=accountbook_id)
+        if request.user == accountbook.author:
+            serializer = AccountbookDetailSerializer(accountbook)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response({"message": "접근 권한 없음"}, status=status.HTTP_403_FORBIDDEN)
