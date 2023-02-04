@@ -1,7 +1,7 @@
 from rest_framework.test import APITestCase
 from django.urls import reverse
 
-from .models import User
+from users.models import User
 
 class SignupViewAPIViewTestCase(APITestCase):
     # 회원가입 성공
