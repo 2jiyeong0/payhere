@@ -1,7 +1,7 @@
 # payhere
 
 ### 가계부 관리
-#### 구현 기능
+### 구현 기능
 1. 고객은 이메일과 비밀번호 입력을 통해서 회원 가입을 할 수 있습니다. 
 2. 고객은 회원 가입이후, 로그인과 로그아웃을 할 수 있습니다. 
 3. 고객은 로그인 이후 가계부 관련 아래의 행동을 할 수 있습니다. 
@@ -13,7 +13,11 @@
     
 로그인하지 않은 고객은 가계부 내역에 대한 접근 제한 처리
 
-#### 테스트케이스
+### branch 
+* main
+    *  feature/users
+    *  feature/accountbooks
+### 테스트케이스
 <details>
 <summary>users</summary>
 <div markdown="1">       
@@ -90,7 +94,7 @@
 </div>
 </details>
 
-#### API
+### API
 ![캡처](https://user-images.githubusercontent.com/96408893/216773467-875f71d0-cc10-4e0c-8498-a70c9f018575.PNG)
 ![dddd](https://user-images.githubusercontent.com/96408893/216773518-5ff0d517-422e-473a-9e4b-b24f9cc82a87.PNG)
 
