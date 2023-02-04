@@ -99,14 +99,14 @@ class AccountbookDetailViewAPIViewTestCase(APITestCase):
         )
         self.assertEqual(response.status_code, 200)
 
-    # 가계부 리스트 조회 실패(비로그인)
+    # 가계부 상세 조회 실패(비로그인)
     def test_accountbook_detail_loign_fail(self):
         response = self.client.get(
             path=reverse("accountbook_detail_view", kwargs={"accountbook_id": 1})
         )
         self.assertEqual(response.status_code, 401)
 
-    # 가계부 리스트 조회 실패(본인이 아닐시)
+    # 가계부 상세 조회 실패(본인이 아닐시)
     def test_accountbook_detail_loign1_fail(self):
         response = self.client.get(
             path=reverse("accountbook_detail_view", kwargs={"accountbook_id": 1}),
